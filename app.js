@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var oktaRouter = require('./routes/okta');
+var onfidoRouter = require('./routes/onfido');
+var configuration = require('./util/config');
 
 var app = express();
 
@@ -18,9 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: configuration.appSecret, saveUninitialized: true, resave: false }))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/okta', oktaRouter);
+app.use('/onfido', onfidoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
