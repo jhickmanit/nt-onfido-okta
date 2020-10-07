@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const configuration = require('../util/config');
 const { getApplicantId } = require('../services/okta');
 const { getSDKToken, startCheck } = require('../services/onfido');
