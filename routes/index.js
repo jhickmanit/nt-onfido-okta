@@ -15,7 +15,11 @@ router.get('/', (req, res) => {
     getSDKToken(applicantId).then((token) => {
       console.log(`generated sdk token for user: ${user}`);
       res.render('index', { token: token });
+    }).catch((error) => {
+      res.render('error', { message: 'error generating token', error });
     })
+  }).catch((error) => {
+    res.render('error', { message: 'error generating token', error });
   })
 });
 
@@ -25,6 +29,8 @@ router.post('/', (req, res) => {
   startCheck(applicantId, ['document', 'facial_similarity_photo']).then((result) => {
     console.log(`started check for: ${applicantId}`)
     res.json({ redirect: configuration.appURL + configuration.port + '/done'});
+  }).catch((error) => {
+    res.render('error', { message: 'cannot create check', error })
   })
 });
 
