@@ -20,7 +20,7 @@ const updateApplicantId = (oktaId, applicantId) => {
 const updateIdvStatus = (oktaId, status) => {
   const user = {
     profile: {
-      onfidoIdvStatus = status,
+      onfidoIdvStatus: status,
     },
   };
   return client.partialUpdateUser(oktaId, user, {}).then((result) => {

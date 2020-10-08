@@ -32,7 +32,10 @@ block content
               "type": "GET",
               "headers": {
                 "Cache-Control": "no-cache",
-              }
+              },
+              "xhrFields": {
+                  "withCredentials": true,
+              },
             }
             $.ajax(settings).done(function (response) {
               if (response.redirect !== '') {
