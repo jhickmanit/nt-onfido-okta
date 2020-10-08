@@ -33,6 +33,8 @@ router.post('/applicant', (req, res) => {
     const applicantId = response.id;
     console.log(`created applicant for: ${newUser.email} with applicant id: ${applicantId}`);
     updateApplicantId(newUser.id, applicantId);
+  }).catch((error) => {
+    console.log(error);
   })
 });
 
