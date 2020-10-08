@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const configuration = require('../util/config');
-const createApplicant = require('../services/onfido');
+const { createApplicant } = require('../services/onfido');
 const { updateApplicantId } = require('../services/okta');
 
 router.get('/applicant', (req, res) => {
